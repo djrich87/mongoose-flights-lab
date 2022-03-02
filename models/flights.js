@@ -2,6 +2,16 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
+// const ticketSchema = new Schema({
+//   seat: {
+//     type: String
+//   },
+//   price: {
+//     min: 0,
+//     max: 99999,
+//   }
+// })
+
 const flightsSchema = new Schema({
   airline: {
     type: String,
