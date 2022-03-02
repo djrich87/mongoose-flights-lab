@@ -28,9 +28,8 @@ const flightsSchema = new Schema({
       today.setFullYear(oneYearFromNow)
       return today
   },
-  },
-
-
+}}, {
+  timestamps: true
 
 })
 
