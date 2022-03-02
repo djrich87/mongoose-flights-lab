@@ -22,7 +22,21 @@ const flightsSchema = new Schema({
 
   departs: {
     type: Date,
-    default: Date.now() +
-  }
+    default: Date.now() + 365*24*60*1000,
+    // const today = new Date() === 2022-03-01,
+    // const oneYearFromNow = today.getFullYear() + 1 //=> 2022
+    // today.setFullYear(oneYearFromNow) //=> 2022-10-29T12:13:04.759Z
+    // return today
+  
+  },
+
+
 
 })
+
+
+const Flight = mongoose.model('Flight', flightsSchema)
+
+export {
+  Flight
+}
