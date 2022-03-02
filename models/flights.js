@@ -8,7 +8,7 @@ const flightsSchema = new Schema({
     enum: ['American', 'Southwest', 'United']
   },
 
-  airports: {
+  airport: {
     type: String,
     enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN'],
     default: "DEN"
@@ -22,12 +22,12 @@ const flightsSchema = new Schema({
 
   departs: {
     type: Date,
-    default: Date.now() + 365*24*60*1000,
-    // const today = new Date() === 2022-03-01,
-    // const oneYearFromNow = today.getFullYear() + 1 //=> 2022
-    // today.setFullYear(oneYearFromNow) //=> 2022-10-29T12:13:04.759Z
-    // return today
-  
+    default: function () {
+      const today = new Date()
+      const oneYearFromNow = today.getFullYear() + 1
+      today.setFullYear(oneYearFromNow)
+      return today
+  },
   },
 
 
