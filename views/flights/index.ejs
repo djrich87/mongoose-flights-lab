@@ -22,7 +22,9 @@
           <td><a href="/flights/<%= flight._id %>">DETAILS</a></td>
           <td>
             <form action="/flights/<%= flight._id %>?_method=DELETE" method="POST">
-              <button>X</button>
+              <button>
+                <i class="fas fa-trash-can" id="delete-flight-icon">Delete</i>
+              </button>
             </form>
           </td>
         </tr>
