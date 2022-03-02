@@ -30,7 +30,6 @@ const flightsSchema = new Schema({
   },
 }}, {
   timestamps: true
-
 })
 
 
