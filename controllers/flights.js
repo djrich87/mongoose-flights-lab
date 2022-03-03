@@ -1,5 +1,6 @@
 // import req from "express/lib/request"
 import { Flight } from "../models/flights.js"
+import { Meal } from '../models/meal.js'
 
 
 function newFlights(req, res) {
@@ -27,10 +28,17 @@ function index(req, res){
 }
 
 function show(req, res) {
-  Flight.findById(req.params.id, function (err, flight) {
-    res.render('flights/show', {
-      title: 'Flight Detail',
-      flight: flight
+  Flight.findById(req.params.id)
+  .populate('meal')
+  .exec(function (err, flight) {
+    Meal.find({_id: {$nin: Flight.meals}}, function (err, meals) {
+      console.log("flight ", flight)
+      console.log("meals: ", meals)
+      res.render("flights/show", {
+        flight: flight,
+        title: "flight Detail",
+        meals: meals,
+      })
     })
   })
 }
@@ -69,7 +77,14 @@ function createTicket(req, res) {
   })
 }
 
-
+function addToMeal(req, res) {
+  Flight.findById(req.params.id, function(err, flight) {
+    flight.meal.push(req.body.mealId)
+    flight.save(function(err) {
+      res.redirect(`/flights/${flight._id}`)
+    })
+  })
+}
 
 export {
   newFlights as new,
@@ -80,4 +95,5 @@ export {
   edit,
   // update,
   createTicket,
+  addToMeal,
 }
