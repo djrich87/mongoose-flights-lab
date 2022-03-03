@@ -1,5 +1,5 @@
 // import req from "express/lib/request"
-import { Flight } from "../models/flights.js"
+import { Flight } from '../models/flights.js'
 import { Meal } from '../models/meal.js'
 
 
@@ -82,9 +82,10 @@ function createTicket(req, res) {
 }
 
 function addToMeal(req, res) {
-  Flight.findById(req.params.id, function(err, flight) {
+  console.log('sanity check')
+  Flight.findById(req.params.id, function (err, flight) {
     flight.meal.push(req.body.mealId)
-    flight.save(function(err) {
+    flight.save(function (err) {
       res.redirect(`/flights/${flight._id}`)
     })
   })
