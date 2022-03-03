@@ -5,12 +5,14 @@ const Schema = mongoose.Schema
 const ticketSchema = new Schema({
   seat: {
     type: String,
-    range: /[A-F][1-9] ? \d/
+    range: /[A-F][1-9]\d?/
   },
   price: {
+    type: Number,
     min: 0,
-    max: 99999,
   }
+}, {
+  timestamps: true
 })
 
 const flightsSchema = new Schema({
