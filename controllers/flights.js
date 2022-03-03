@@ -51,6 +51,13 @@ function edit(req, res) {
   })
 }
 
+// function update(req, res) {
+//   Flight.findById(req.params.id, req.body,
+//     function (err, flight) {
+//       res.redirect(`/flights/${flight._id}`)
+//     })
+// }
+
 function createTicket(req, res) {
   console.log('req.body', req.body)
   Flight.findById(req.params.id, function(err, flight) {
@@ -70,5 +77,6 @@ export {
   show,
   deleteFlight as delete,
   edit,
+  // update,
   createTicket,
 }
